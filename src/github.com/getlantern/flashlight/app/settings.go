@@ -75,7 +75,9 @@ func loadSettingsFrom(version, revisionDate, buildDate, path string) *Settings {
 
 	// We always just set the device ID to the MAC address on the system. Note
 	// this ignores what's on disk, if anything.
-	set.DeviceID = base64.StdEncoding.EncodeToString(uuid.NodeID())
+	// set.DeviceID = base64.StdEncoding.EncodeToString(uuid.NodeID())
+    u := uuid.New()
+    set.DeviceID = base64.StdEncoding.EncodeToString(([]byte(u.String()))[0:6])
 
 	if set.AutoLaunch {
 		launcher.CreateLaunchFile(set.AutoLaunch)
