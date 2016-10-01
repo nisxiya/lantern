@@ -9,7 +9,8 @@ import (
 	"reflect"
 	"sync"
 
-	"code.google.com/p/go-uuid/uuid"
+	// "code.google.com/p/go-uuid/uuid"
+    "github.com/google/uuid"
 
 	"github.com/getlantern/appdir"
 	"github.com/getlantern/launcher"
@@ -237,6 +238,7 @@ func (s *Settings) SetDeviceID(deviceID string) {
 func (s *Settings) GetDeviceID() string {
 	s.RLock()
 	defer s.RUnlock()
+    log.Debugf("Modified DeviceID: %v", s.DeviceID)
 	return s.DeviceID
 }
 
